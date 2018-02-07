@@ -3,7 +3,6 @@
 work in progress
 
 ## Todo
-+ local storage
 + content editable
 + styles css
 
