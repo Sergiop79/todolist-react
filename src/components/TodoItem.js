@@ -23,7 +23,6 @@ class TodoItem extends Component {
 
   deleteItem (e) {
     const id = this.props.id
-    console.log(id)
     this.props.onDelete(id)
   }
 

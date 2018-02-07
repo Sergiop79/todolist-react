@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import InputForm from './components/InputForm'
 import TodoList from './components/TodoList'
 import Filter from './components/Filter'
+import { getFromLocalStorage, setToLocalStorage } from './utils/Storage'
 
 class App extends Component {
   constructor (props) {
     super(props)
 
+    this.lsKey = 'reactTodos'
     this.state = {
-      todos: [],
+      todos: getFromLocalStorage(this.lsKey),
       filter: 'all'
     }
 
@@ -28,10 +30,10 @@ class App extends Component {
 
     todos.push(newItem)
     this.setState({ todos: todos })
+    setToLocalStorage(this.lsKey, todos)
   }
 
   handleItemChange (itemState) {
-    console.log(itemState, 'from App')
     const todos = this.state.todos
       .slice()
       .map(item => {
@@ -42,6 +44,7 @@ class App extends Component {
       })
 
     this.setState({ todos })
+    setToLocalStorage(this.lsKey, todos)
   }
 
   handleDelete (id) {
@@ -50,6 +53,7 @@ class App extends Component {
       .filter(item => item.id !== id)
 
     this.setState({ todos })
+    setToLocalStorage(this.lsKey, todos)
   }
 
   handleFilter (filter) {
