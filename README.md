@@ -3,7 +3,6 @@
 work in progress
 
 ## Todo
-+ content editable
 + styles css
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
