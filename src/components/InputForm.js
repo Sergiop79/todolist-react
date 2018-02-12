@@ -16,8 +16,15 @@ class InputForm extends Component {
 
   handleSubmit (e) {
     e.preventDefault()
+    const value = this.state.value.trim()
+
+    if (value) {
+      this.props.onNewItem(value)
+    } else {
+      console.log('you need to enter a value')
+    }
+
     this.setState({ value: '' })
-    this.props.onNewItem(this.state.value)
   }
 
   render () {
