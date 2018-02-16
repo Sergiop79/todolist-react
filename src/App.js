@@ -29,8 +29,10 @@ class App extends Component {
       completed: false
     }
 
+    const byNewestId = (a, b) => b.id - a.id
+
     todos.push(newItem)
-    this.setState({ todos: todos })
+    this.setState({ todos: todos.sort(byNewestId) })
     setToLocalStorage(this.lsKey, todos)
   }
 
@@ -64,8 +66,8 @@ class App extends Component {
   render () {
     const { todos, filter } = this.state
     return (
-      <div className='App'>
-        <h1>todo</h1>
+      <div className='todo'>
+        <h1 className='todo__title'>todo</h1>
         <InputForm onNewItem={this.handleNewItem} />
         <TodoList
           todos={todos}
@@ -79,6 +81,7 @@ class App extends Component {
             active={todos.filter(item => !item.completed).length}
             all={todos.length}
             completed={todos.filter(item => item.completed).length}
+            filter={this.state.filter}
             onFilter={this.handleFilter}
           />
           : ''

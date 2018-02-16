@@ -26,14 +26,14 @@ class TodoItem extends Component {
     })
   }
 
-  deleteItem (e) {
+  deleteItem () {
     const id = this.props.id
     this.props.onDelete(id)
   }
 
   handleLabelClick (e) {
     e.preventDefault()
-    if(!this.state.completed) {
+    if (!this.state.completed) {
       this.setState({ editable: !this.state.editable })
     }
   }
@@ -46,6 +46,9 @@ class TodoItem extends Component {
     const ENTER_KEY = 13
     if (e.keyCode === ENTER_KEY) {
       this.setState({ editable: false })
+      if (this.state.name.trim() === '') {
+        return this.deleteItem()
+      }
       this.props.onCompleted(this.state)
     }
   }
@@ -75,10 +78,18 @@ class TodoItem extends Component {
   render () {
     const {id} = this.props
     return (
-      <li>
-        <input id={id} checked={this.state.completed} type='checkbox' onChange={this.handleCheck} />
+      <li className='todo__list__item'>
+        <input
+          checked={this.state.completed}
+          className='todo__list__item__checkbox'
+          id={id}
+          onChange={this.handleCheck}
+          type='checkbox'
+        />
         { this._renderEditable() }
-        <button onClick={this.deleteItem}>X</button>
+        <button
+          className='todo__list__item__destroy'
+          onClick={this.deleteItem}>X</button>
       </li>
     )
   }

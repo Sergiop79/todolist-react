@@ -42,7 +42,7 @@ class TodoList extends Component {
   render () {
     const { todos, filter } = this.props
     return (
-      <ul>
+      <ul className='todo__list'>
         { this.renderFiltered(todos, filter) }
       </ul>
     )

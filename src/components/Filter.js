@@ -4,25 +4,33 @@ class Filter extends Component {
   constructor (props) {
     super(props)
     this.handleClick = this.handleClick.bind(this)
+    this._isActive = this._isActive.bind(this)
   }
 
   handleClick (e) {
     this.props.onFilter(e.target.dataset.filter)
   }
 
+  _isActive (filter) {
+    return this.props.filter === filter
+  }
+
   render () {
     const { active, all, completed } = this.props
     return (
-      <div>
+      <div className='todo__footer'>
         <button
           data-filter='all'
-          onClick={this.handleClick}>All - {all}</button>
+          className={`todo__filter__btn ${this._isActive('all') ? 'todo__filter__btn--active' : ''}`}
+          onClick={this.handleClick}>All {all}</button>
         <button
           data-filter='active'
-          onClick={this.handleClick}>Active - {active}</button>
+          className={`todo__filter__btn ${this._isActive('active') ? 'todo__filter__btn--active' : ''}`}
+          onClick={this.handleClick}>Active {active}</button>
         <button
           data-filter='completed'
-          onClick={this.handleClick}>Completed - {completed}</button>
+          className={`todo__filter__btn ${this._isActive('completed') ? 'todo__filter__btn--active' : ''}`}
+          onClick={this.handleClick}>Completed {completed}</button>
       </div>
     )
   }
