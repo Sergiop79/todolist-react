@@ -1,3 +1,4 @@
+import './App.css'
 import React, { Component } from 'react'
 import InputForm from './components/InputForm'
 import TodoList from './components/TodoList'
